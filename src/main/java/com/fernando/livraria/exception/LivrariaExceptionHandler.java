@@ -19,10 +19,12 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class LivrariaExceptionHandler extends ResponseEntityExceptionHandler 
+public class LivrariaExceptionHandler extends ResponseEntityExceptionHandler //classe definida para tratar exceções e personalizar as mesmas, para facilitar a depuração em caso de falhas
 {
 	
-	@ExceptionHandler(EntityNotFoundException.class)
+	@ExceptionHandler(EntityNotFoundException.class) //define a classe pertencente a esse tipo de erro, assim qualquer erro que esteja relacionado a essa classe 
+													 //acionará o método handlerEntityNotFoundException que por sua vez acionará o construtor de mensagens de erro de API, definidos em ApiError
+													 //e no método buildResponseEntity
 	public ResponseEntity<Object> handlerEntityNotFoundException(EntityNotFoundException exception)
 	{
 		return buildResponseEntity(HttpStatus.BAD_REQUEST, exception.getMessage(), Collections.singletonList(exception.getMessage()));
