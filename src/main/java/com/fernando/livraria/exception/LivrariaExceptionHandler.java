@@ -28,7 +28,7 @@ public class LivrariaExceptionHandler extends ResponseEntityExceptionHandler
 		return buildResponseEntity(HttpStatus.BAD_REQUEST, exception.getMessage(), Collections.singletonList(exception.getMessage()));
 	}
 	
-	@ExceptionHandler(EntityNotFoundException.class)
+	@ExceptionHandler(EntityExistsException.class)
 	public ResponseEntity<Object> handlerEntityExistsException(EntityExistsException exception)
 	{
 		return buildResponseEntity(HttpStatus.BAD_REQUEST, exception.getMessage(), Collections.singletonList(exception.getMessage()));
